@@ -10,5 +10,7 @@ namespace sda_onsite_2_csharp_backend_teamwork.src.Abstractions
         public string SignIn(UserSignIn user);
         public UserReadDto? FindOneByEmail(string email);
         public UserReadDto UpdateOne(string email, UserReadDto newValue);
+       // public bool DeleteOne(string userEmail);
+
     }
 }

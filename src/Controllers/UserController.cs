@@ -73,6 +73,15 @@ public class UserController : BaseController
             return Ok(token);
         }
         return BadRequest();
+    }
+
+    // [HttpDelete("{email}")]
+    // [ProducesResponseType(StatusCodes.Status204NoContent)]
+    // [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    // public ActionResult DeleteOne(string userEmail)
+    // {
+    //     _userService.DeleteOne(userEmail);
+    //     return NoContent();
+    // }
 
     }
-}

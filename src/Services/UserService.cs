@@ -120,30 +120,19 @@ public class UserService : IUserService
         return null;
     }
 
-    // [HttpGet("{userId}")]
-    //     public User? FindOne(string userId)
-    //     {
-    //         User? user = _userRepository.FindOne( user => user.Id == userId);
-    //         return user;
-    //     }
-
-
-    //     public List<User> FindOne(string id)
-    //     {
-    //     var findUserById = 
-    //         return users.Find(user => user.Id == id);
-    //     }
-
-    // public User? DeleteOne(string userId)
+    // public bool DeleteOne(string userEmail)
     // {
-    //     var deleteUser = _userRepository.FindOne(userId);
+    //     var deleteUser = _userRepository.FindOneByEmail(userEmail);
     //     if (deleteUser == null)
     //     {
-    //         return null;
+    //         return false;
     //     }
     //     else
     //     {
-    //         return _userRepository.DeleteOne(userId);
+    //     _userRepository.DeleteOne(deleteUser);
+    //     return true;
+
+
     //     }
     // }
 }

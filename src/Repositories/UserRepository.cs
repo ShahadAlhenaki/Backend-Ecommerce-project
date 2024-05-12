@@ -48,6 +48,14 @@ public class UserRepository : IUserRepository
         return updateUser;
     }
 
+    // public void DeleteOne(User user)
+    // {
+    //         _users.Remove(user);
+    //         _databaseContext.SaveChanges();
+        
+    // }
+    
+
     //     public User? FindOneById(string id)
     // {
     //     User? user = _users.FirstOrDefault(user => user.Id = id);

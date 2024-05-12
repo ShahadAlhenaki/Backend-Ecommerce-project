@@ -13,7 +13,7 @@ using sda_onsite_2_csharp_backend_teamwork.src.Enums;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240508120539_db-init")]
+    [Migration("20240512131814_db-init")]
     partial class dbinit
     {
         /// <inheritdoc />
