@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using sda_onsite_2_csharp_backend_teamwork.src.Entities;
-
 namespace sda_onsite_2_csharp_backend_teamwork.src.Abstractions;
 
 public interface IOrderRepository
@@ -14,9 +9,4 @@ public interface IOrderRepository
     public Order CreateOne(Order newOrder);
     public void DeleteOneById(Order id);
     public void DeleteOrderByUserId(Guid userId);
-    // public IEnumerable<Stock> EditQuantity(int id);
-    // public IEnumerable<Stock> EditeOne();
-
-
-
 }

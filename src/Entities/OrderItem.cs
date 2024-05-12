@@ -1,16 +1,9 @@
-
-namespace sda_onsite_2_csharp_backend_teamwork.src.Entities
+namespace sda_onsite_2_csharp_backend_teamwork.src.Entities;
+public class OrderItem
 {
-    public class OrderItem
-    {
-        public Guid Id { get; set; }
-        public Guid OrderId { get; set; }
-        public Order Order { get; set; }
-        public Guid StockId { get; set; }
-        public int Quantity { get; set; }
-        // public IEnumerable<Stock> Stocks { get; set; }
-        // public IEnumerable<Order> Orders { get; set; }
-
-
-    }
+    public Guid Id { get; set; }
+    public Guid OrderId { get; set; }
+    public Order Order { get; set; }
+    public Guid StockId { get; set; }
+    public int Quantity { get; set; }
 }

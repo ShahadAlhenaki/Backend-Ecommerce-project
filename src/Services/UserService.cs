@@ -2,15 +2,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic;
 using sda_onsite_2_csharp_backend_teamwork.src.Abstractions;
 using sda_onsite_2_csharp_backend_teamwork.src.DTOs;
 using sda_onsite_2_csharp_backend_teamwork.src.Entities;
-using sda_onsite_2_csharp_backend_teamwork.src.Mappers;
 using sda_onsite_2_csharp_backend_teamwork.src.Utils;
-
 namespace sda_onsite_2_csharp_backend_teamwork.src.Services;
 
 public class UserService : IUserService
@@ -36,7 +32,6 @@ public class UserService : IUserService
         bool isCorrectPass = PasswordUtils.VarifyPassword(userSign.Password, user.Password, pepper);
         if (!isCorrectPass) return null;
 
-
         var claims = new[]
              {
             new Claim(ClaimTypes.Name, user.FullName),
@@ -58,21 +53,15 @@ public class UserService : IUserService
         var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
         return tokenString;
-
-        // UserReadDto userRead = _mapper.Map<UserReadDto>(user);
-        // return userRead;
-
     }
 
     public UserReadDto? SignUp(UserCreateDto user)
     {
         User? foundUser = _userRepository.FindOneByEmail(user.Email);
-
         if (foundUser is not null)
         {
             return null;
         }
-
         byte[] pepper = Encoding.UTF8.GetBytes(_config["Jwt:Pepper"]!);
 
         PasswordUtils.HashPassword(user.Password, out string hashedPassword, pepper);
@@ -86,7 +75,6 @@ public class UserService : IUserService
 
         return userRead;
     }
-
     public List<UserReadDto> FindAll()
     {
         var users = _userRepository.FindAll();
@@ -100,8 +88,7 @@ public class UserService : IUserService
         UserReadDto? userRead = _mapper.Map<UserReadDto>(user);
         return userRead;
     }
-
-    public UserReadDto? UpdateOne(string email, UserReadDto newValue)
+    public UserReadDto UpdateOne(string email, UserUpdateDto newValue)
     {
         User? user = _userRepository.FindOneByEmail(email);
         if (user is not null)

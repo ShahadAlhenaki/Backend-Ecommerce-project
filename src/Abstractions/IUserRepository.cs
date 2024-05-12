@@ -1,7 +1,6 @@
 using sda_onsite_2_csharp_backend_teamwork.src.Entities;
+namespace sda_onsite_2_csharp_backend_teamwork.src.Abstractions;
 
-namespace sda_onsite_2_csharp_backend_teamwork.src.Abstractions
-{
     public interface IUserRepository
     {
         public IEnumerable<User> FindAll();
@@ -10,4 +9,4 @@ namespace sda_onsite_2_csharp_backend_teamwork.src.Abstractions
         public User UpdateOne(User updateUser);
         // public void DeleteOne(User user);
     }
-}
+

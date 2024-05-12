@@ -1,8 +1,5 @@
-
 using System.ComponentModel.DataAnnotations;
-using sda_onsite_2_csharp_backend_teamwork.src.Entities;
 using static sda_onsite_2_csharp_backend_teamwork.src.DTOs.OrderCreateDTO;
-
 namespace sda_onsite_2_csharp_backend_teamwork.src.DTOs;
 
 public class OrderCreateDTO
@@ -11,21 +8,17 @@ public class OrderCreateDTO
     public Guid UserId { get; set; }
     public int TotalAmount { get; set; }
     public DateTime OrderDate { get; set; } = DateTime.Now;
-
     public enum Status { set, get }
     [Required]
     public Guid PaymentId { get; set; }
 
 }
-
 public class CheckoutDto
 {
     public Guid ProductId { get; set; }
-
     public string Color { get; set; }
     public char Size { get; set; }
     public int Quantity { get; set; }
-
 }
 public class OrderReadDto
 {
@@ -36,8 +29,4 @@ public class OrderReadDto
     public int TotalAmount { get; set; }
     public Status Status { get; set; }
     public string PaymentId { get; set; }
-    // public IEnumerable<OrderItem> OrderItem { get; set; }
-
-
-
 }

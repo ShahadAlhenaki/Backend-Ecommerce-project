@@ -12,7 +12,6 @@ public class CategoryRepository : ICategoryRepository
 
     public CategoryRepository(DatabaseContext databaseContext)
     {
-        //   _categorys = _databaseContext.Category;
         _databaseContext = databaseContext;
         _categorys = databaseContext.Category;
     }

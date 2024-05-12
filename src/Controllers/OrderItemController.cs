@@ -1,8 +1,7 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using sda_onsite_2_csharp_backend_teamwork.src.Abstractions;
 using sda_onsite_2_csharp_backend_teamwork.src.Entities;
-using sda_onsite_2_csharp_backend_teamwork.src.Services;
-
 namespace sda_onsite_2_csharp_backend_teamwork.src.Controllers;
 
 
@@ -15,6 +14,8 @@ public class OrderItemController : BaseController
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
+
     public IEnumerable<OrderItem> FindAll()
     {
         return _orderItemService.FindAll();
@@ -23,8 +24,6 @@ public class OrderItemController : BaseController
     [HttpGet("stock/{stockId}")]
     public ActionResult<IEnumerable<OrderItem>> FindByStockId(Guid stockId)
     {
-        // return _stockService.FindByStockId(stockId);
-
         var orderQuantity = _orderItemService.FindByStockId(stockId);
 
         if (orderQuantity is null)

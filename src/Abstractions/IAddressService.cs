@@ -1,12 +1,10 @@
 using Hanan_csharp_backend_teamwork.src.DTOs;
-using Hanan_csharp_backend_teamwork.src.Entities;
-namespace Hanan_csharp_backend_teamwork.src.Abstractions
+namespace Hanan_csharp_backend_teamwork.src.Abstractions;
+
+public interface IAddressService
 {
-    public interface IAddressService
-    {
-        public IEnumerable<Address> FindAll();
-        public Address? FindOne(Guid id);
-        public bool DeleteById(Guid id);
-        public Address CreateOne(AddressDTO userAddress);
-    }
+    public IEnumerable<AddressDTO> FindAll();
+    public AddressDTO? FindOne(Guid id);
+    public bool DeleteById(Guid id);
+    public AddressDTO CreateOne(AddressCreateDTO userAddress);
 }
