@@ -12,14 +12,20 @@ public class ProductRepository : IProductRepository
         _databaseContext = databaseContext;
         _products = _databaseContext.Product;
     }
-    public IEnumerable<Product> FindAll(int limit, int offset)
-    {
-        if (limit == 0 && offset == 0)
+    // public IEnumerable<Product> FindAll(int limit, int offset)
+    // {
+    //     if (limit == 0 && offset == 0)
+    //     {
+    //         return _products;
+    //     }
+    //     return _products.Skip(offset).Take(limit);
+    // }
+
+    public IEnumerable<Product> FindAll(string? searchBy)
         {
             return _products;
         }
-        return _products.Skip(offset).Take(limit);
-    }
+
     public Product? FindeOne(Guid Id)
     {
         Product? product = _products.FirstOrDefault(product => product.Id == Id);
@@ -35,4 +41,27 @@ public class ProductRepository : IProductRepository
         _databaseContext.SaveChanges();
         return product;
     }
+
+    public bool DeleteById(Guid id){
+        Product? product = FindeOne(id);
+        if (product is null)
+        {
+            return false;
+        }
+        else
+        {
+            _products.Remove(product);
+            _databaseContext.SaveChanges();
+            return true;
+        }
+    }
+
+    public Product UpdateOne(Product UpdateProduct)
+        {
+            _databaseContext.Product.Update(UpdateProduct);
+            _databaseContext.SaveChanges();
+
+            return UpdateProduct;
+        }
+
 }

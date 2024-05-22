@@ -17,10 +17,16 @@ public class ProductController : BaseController
     [HttpGet]
 
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public ActionResult<IEnumerable<ProductDTO>> FindAll([FromQuery(Name = "limit")] int limit, [FromQuery(Name = "offset")] int offset)
+    // public ActionResult<IEnumerable<ProductDTO>> FindAll([FromQuery(Name = "limit")] int limit, [FromQuery(Name = "offset")] int offset)
+    // {
+    //     return Ok(_productSarvice.FindAll(limit, offset));
+    // }
+
+    public ActionResult<IEnumerable<ProductReadDTO>> FindAll([FromQuery(Name = "searchBy")] string? searchBy = null)
     {
-        return Ok(_productSarvice.FindAll(limit, offset));
+        return Ok(_productSarvice.FindAll(searchBy));
     }
+
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -34,7 +40,7 @@ public class ProductController : BaseController
 
     }
     [HttpPost]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<ProductDTO> CreateOne([FromBody] ProductReadDTO newProduct)
@@ -46,5 +52,32 @@ public class ProductController : BaseController
         }
         return BadRequest();
     }
+
+[HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public ActionResult DeleteById(Guid id)
+    {
+        Console.WriteLine($"id of product from {id}");
+        
+        _productSarvice.DeleteById(id);
+        return NoContent();
+    }
+
+        [HttpPatch("{productId}")]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<Product> UpdateOne(Guid productId, [FromBody] ProductUpdateDto updateProduct)
+        {
+            var foundProduct = FindeOne(productId);
+
+            if (foundProduct != null)
+            {
+                ProductReadDTO product = _productSarvice.UpdateOne(productId, updateProduct);
+
+                return Accepted(product);
+            }
+            return NotFound();
+        }
+
 
 }
