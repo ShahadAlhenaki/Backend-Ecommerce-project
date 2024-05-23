@@ -1,16 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using sda_onsite_2_csharp_backend_teamwork.src.Abstractions;
 using sda_onsite_2_csharp_backend_teamwork.src.Databases;
+using sda_onsite_2_csharp_backend_teamwork.src.DTOs;
+using sda_onsite_2_csharp_backend_teamwork.src.Entities;
 namespace sda_onsite_2_csharp_backend_teamwork.src.Repository;
 
 public class ProductRepository : IProductRepository
 {
     private DbSet<Product> _products;
+    private DbSet<Stock> _stocks;
+    
     private DatabaseContext _databaseContext;
     public ProductRepository(DatabaseContext databaseContext)
     {
         _databaseContext = databaseContext;
         _products = _databaseContext.Product;
+        _stocks = databaseContext.Stock;
     }
     // public IEnumerable<Product> FindAll(int limit, int offset)
     // {
@@ -21,10 +26,28 @@ public class ProductRepository : IProductRepository
     //     return _products.Skip(offset).Take(limit);
     // }
 
-    public IEnumerable<Product> FindAll(string? searchBy)
-        {
-            return _products;
-        }
+    public IEnumerable<ProductWithStock> FindAll(string? searchBy)
+    {
+        var productWithStock = from product in _products
+                               join stock in _stocks
+                               on product.Id equals stock.ProductId
+                               into productStocks
+                               from stock in productStocks.DefaultIfEmpty()
+                               select new ProductWithStock
+                               {
+                                   Id = product.Id,
+                                   CategoryId = product.CategoryId,
+                                   StockId = stock != null ? stock.Id : null,
+                                   Color = stock != null ? stock.Color : null,
+                                   Size = stock != null ? stock.Size : null,
+                                   Price = stock != null ? stock.Price : null,
+                                   Description = product.Description,
+                                   Image = product.Image,
+                                   Name = product.Name,
+                                   Quantity = stock != null ? stock.StockQuantity : (int?)null
+                               };
+        return productWithStock;
+    }
 
     public Product? FindeOne(Guid Id)
     {
@@ -42,7 +65,8 @@ public class ProductRepository : IProductRepository
         return product;
     }
 
-    public bool DeleteById(Guid id){
+    public bool DeleteById(Guid id)
+    {
         Product? product = FindeOne(id);
         if (product is null)
         {
@@ -57,11 +81,11 @@ public class ProductRepository : IProductRepository
     }
 
     public Product UpdateOne(Product UpdateProduct)
-        {
-            _databaseContext.Product.Update(UpdateProduct);
-            _databaseContext.SaveChanges();
+    {
+        _databaseContext.Product.Update(UpdateProduct);
+        _databaseContext.SaveChanges();
 
-            return UpdateProduct;
-        }
+        return UpdateProduct;
+    }
 
 }

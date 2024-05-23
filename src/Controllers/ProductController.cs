@@ -22,7 +22,7 @@ public class ProductController : BaseController
     //     return Ok(_productSarvice.FindAll(limit, offset));
     // }
 
-    public ActionResult<IEnumerable<ProductReadDTO>> FindAll([FromQuery(Name = "searchBy")] string? searchBy = null)
+    public ActionResult<IEnumerable<ProductWithStock>> FindAll([FromQuery(Name = "searchBy")] string? searchBy = null)
     {
         return Ok(_productSarvice.FindAll(searchBy));
     }
