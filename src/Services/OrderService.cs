@@ -55,7 +55,7 @@ public class OrderService : IOrderService
             {
                 IEnumerable<Stock>? stocks = _stockService.FindByProductId(item.ProductId);
 
-                Stock? stock = stocks.FirstOrDefault(stock => stock.Color == item.Color && stock.Size == item.Size);
+                Stock? stock = stocks.FirstOrDefault(stock => stock.Color == item.Color);
                 if (stock is null) { continue; }
                 if (item.Quantity > stock.StockQuantity)
                 {

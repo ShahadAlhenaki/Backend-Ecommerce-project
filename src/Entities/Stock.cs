@@ -7,6 +7,5 @@ public class Stock
     public int StockQuantity { get; set; }
     public int Price { get; set; }
     public string Color { get; set; }
-    public char Size { get; set; }
     public IEnumerable<OrderItem> OrderItems { get; set; }
 }

@@ -55,7 +55,6 @@ public class ProductWithStock
     public int? Quantity { get; set; }
     public int? Price { get; set; }
     public string? Color { get; set; }
-    public char? Size { get; set; }
 }
 // create ProductCreateDTO => without id 
 // go to mappper, mapper to map ProductCreateDTO to Product 

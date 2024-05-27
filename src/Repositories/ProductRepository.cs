@@ -39,7 +39,6 @@ public class ProductRepository : IProductRepository
                                    CategoryId = product.CategoryId,
                                    StockId = stock != null ? stock.Id : null,
                                    Color = stock != null ? stock.Color : null,
-                                   Size = stock != null ? stock.Size : null,
                                    Price = stock != null ? stock.Price : null,
                                    Description = product.Description,
                                    Image = product.Image,

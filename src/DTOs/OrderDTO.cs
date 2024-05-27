@@ -17,7 +17,6 @@ public class CheckoutDto
 {
     public Guid ProductId { get; set; }
     public string Color { get; set; }
-    public char Size { get; set; }
     public int Quantity { get; set; }
 }
 public class OrderReadDto
