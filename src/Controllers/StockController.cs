@@ -20,7 +20,7 @@ public class StockController : BaseController
     }
 
     [HttpPost]
-    [Authorize(Roles = "Admin")]
+   // [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<Stock> CreateOne(StockCreateDto newStock)

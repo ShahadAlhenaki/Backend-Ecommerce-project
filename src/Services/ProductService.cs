@@ -36,7 +36,7 @@ public class ProductService : IProductService
 
 
     }
-    public ProductDTO CreateOne(ProductReadDTO product)
+    public ProductDTO CreateOne(ProductCreateDTO product)
     {
         Product creatProduct = _mapper.Map<Product>(product);
         return _mapper.Map<ProductDTO>(_ProductRepository.CreateOne(creatProduct));

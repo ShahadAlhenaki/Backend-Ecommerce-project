@@ -7,7 +7,7 @@ public interface IProductService
     public IEnumerable<ProductWithStock> FindAll(string? searchBy);
 
     public ProductDTO? FindeOne(Guid Id);
-    public ProductDTO CreateOne(ProductReadDTO product);
+    public ProductDTO CreateOne(ProductCreateDTO product);
 
     public bool DeleteById(Guid id);
 

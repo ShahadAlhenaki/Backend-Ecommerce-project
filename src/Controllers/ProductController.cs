@@ -43,7 +43,7 @@ public class ProductController : BaseController
     // [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public ActionResult<ProductDTO> CreateOne([FromBody] ProductReadDTO newProduct)
+    public ActionResult<ProductDTO> CreateOne([FromBody] ProductCreateDTO newProduct)
     {
         if (newProduct is not null)
         {

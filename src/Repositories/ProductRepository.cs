@@ -9,7 +9,7 @@ public class ProductRepository : IProductRepository
 {
     private DbSet<Product> _products;
     private DbSet<Stock> _stocks;
-    
+
     private DatabaseContext _databaseContext;
     public ProductRepository(DatabaseContext databaseContext)
     {

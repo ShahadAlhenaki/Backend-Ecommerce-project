@@ -39,6 +39,7 @@ public class Mapper : Profile
         CreateMap<ProductDTO, ProductReadDTO>();
         CreateMap<Product, ProductDTO>();
         CreateMap<ProductDTO, Product>();
+        CreateMap<ProductCreateDTO, Product>();
 
         CreateMap<User, UserReadDto>();
         CreateMap<UserReadDto, User>();
