@@ -9,3 +9,5 @@ public class Stock
     public string Color { get; set; }
     public IEnumerable<OrderItem> OrderItems { get; set; }
 }
+
+
